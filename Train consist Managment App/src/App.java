@@ -2,38 +2,46 @@ import java.util.*;
 
 /**
  * ============================================================
- * MAIN CLASS - UseCase5TrainConsistMgmt
+ * MAIN CLASS - UseCase6TrainConsistMgmt
  * ============================================================
  *
- * Use Case 5: Preserve Insertion Order of Bogies
+ * Use Case 6: Map Bogie to Capacity
  *
  * Description:
- * Demonstrates LinkedHashSet to maintain order + uniqueness.
+ * Demonstrates HashMap to associate bogies with capacity.
  *
  * @author Developer
- * @version 5.0
+ * @version 6.0
  */
-class UseCase5TrainConsistMgmt {
+class UseCase6TrainConsistMgmt {
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println(" UC5 - Preserve Insertion Order ");
+        System.out.println(" UC6 - Map Bogie to Capacity ");
         System.out.println("========================================\n");
 
-        // Create LinkedHashSet
-        LinkedHashSet<String> train = new LinkedHashSet<>();
+        // Create HashMap (bogie → capacity)
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-        // --- Add bogies ---
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("Cargo");
-        train.add("Guard");
+        // --- Insert values ---
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 50);
+        bogieCapacity.put("First Class", 30);
+        bogieCapacity.put("Goods Rectangular", 100);
+        bogieCapacity.put("Goods Cylindrical", 120);
 
-        // --- Try duplicate ---
-        train.add("Sleeper"); // ignored
+        // --- Display mapping ---
+        System.out.println("Bogie Capacity Details:\n");
 
-        // Display final formation
-        System.out.println("Final Train Formation: " + train);
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(
+                    entry.getKey() + " → Capacity: " + entry.getValue()
+            );
+        }
+
+        // --- Example lookup ---
+        System.out.println("\nCapacity of Sleeper: " +
+                bogieCapacity.get("Sleeper"));
     }
 }
