@@ -2,45 +2,46 @@ import java.util.*;
 
 /**
  * ============================================================
- * MAIN CLASS - UseCase3TrainConsistMgmt
+ * MAIN CLASS - UseCase4TrainConsistMgmt
  * ============================================================
  *
- * Use Case 3: Track Unique Bogie IDs
+ * Use Case 4: Maintain Ordered Bogie IDs
  *
  * Description:
- * Demonstrates use of HashSet to store unique bogie IDs.
+ * Demonstrates LinkedList to maintain ordered train consist.
  *
  * @author Developer
- * @version 3.0
+ * @version 4.0
  */
-class UseCase3TrainConsistMgmt {
+class UseCase4TrainConsistMgmt {
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println(" UC3 - Track Unique Bogie IDs ");
+        System.out.println(" UC4 - Maintain Ordered Bogie IDs ");
         System.out.println("========================================\n");
 
-        // Create a Set to store unique bogie IDs
-        Set<String> bogies = new HashSet<>();
+        // Create LinkedList for train consist
+        LinkedList<String> train = new LinkedList<>();
 
-        // --- ADD IDs (including duplicates) ---
-        bogies.add("BG101");
-        bogies.add("BG102");
-        bogies.add("BG103");
-        bogies.add("BG104");
+        // --- Add bogies ---
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-        // Duplicate entries (ignored automatically)
-        bogies.add("BG101");
-        bogies.add("BG102");
+        System.out.println("Initial Train: " + train);
 
-        // Display unique bogies
-        System.out.println("Unique Bogie IDs: " + bogies);
+        // --- Insert Pantry at position 2 ---
+        train.add(2, "Pantry");
+        System.out.println("After Adding Pantry: " + train);
 
-        // Check existence
-        System.out.println("Contains BG103? " + bogies.contains("BG103"));
+        // --- Remove first and last ---
+        train.removeFirst();
+        train.removeLast();
 
-        // Total unique count
-        System.out.println("Total Unique Bogies: " + bogies.size());
+        // Final output
+        System.out.println("Final Train Consist: " + train);
     }
 }
