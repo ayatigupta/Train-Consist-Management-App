@@ -2,46 +2,59 @@ import java.util.*;
 
 /**
  * ============================================================
- * MAIN CLASS - UseCase6TrainConsistMgmt
+ * MAIN CLASS - UseCase7TrainConsistMgmt
  * ============================================================
  *
- * Use Case 6: Map Bogie to Capacity
+ * Use Case 7: Sort Bogies by Capacity
  *
  * Description:
- * Demonstrates HashMap to associate bogies with capacity.
+ * Demonstrates sorting using Comparator.
  *
  * @author Developer
- * @version 6.0
+ * @version 7.0
  */
-class UseCase6TrainConsistMgmt {
+class UseCase7TrainConsistMgmt {
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println(" UC6 - Map Bogie to Capacity ");
+        System.out.println(" UC7 - Sort Bogies by Capacity ");
         System.out.println("========================================\n");
 
-        // Create HashMap (bogie → capacity)
-        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        // Create list of bogies
+        List<Bogie> bogies = new ArrayList<>();
 
-        // --- Insert values ---
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 50);
-        bogieCapacity.put("First Class", 30);
-        bogieCapacity.put("Goods Rectangular", 100);
-        bogieCapacity.put("Goods Cylindrical", 120);
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 30));
 
-        // --- Display mapping ---
-        System.out.println("Bogie Capacity Details:\n");
+        // Sort using Comparator (ascending)
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println(
-                    entry.getKey() + " → Capacity: " + entry.getValue()
-            );
+        System.out.println("Sorted Bogies (Ascending Capacity):");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " → " + b.capacity);
         }
 
-        // --- Example lookup ---
-        System.out.println("\nCapacity of Sleeper: " +
-                bogieCapacity.get("Sleeper"));
+        // Sort descending
+        bogies.sort((a, b) -> b.capacity - a.capacity);
+
+        System.out.println("\nSorted Bogies (Descending Capacity):");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " → " + b.capacity);
+        }
+    }
+}
+
+/**
+ * Bogie class (custom object)
+ */
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
     }
 }
