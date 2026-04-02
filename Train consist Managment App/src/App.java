@@ -2,47 +2,45 @@ import java.util.*;
 
 /**
  * ============================================================
- * MAIN CLASS - UseCase2TrainConsistMgmt
+ * MAIN CLASS - UseCase3TrainConsistMgmt
  * ============================================================
  *
- * Use Case 2: Add Passenger Bogies to Train
+ * Use Case 3: Track Unique Bogie IDs
  *
  * Description:
- * Demonstrates CRUD operations using ArrayList.
+ * Demonstrates use of HashSet to store unique bogie IDs.
  *
  * @author Developer
- * @version 2.0
+ * @version 3.0
  */
-class UseCase2TrainConsistMgmt {
+class UseCase3TrainConsistMgmt {
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println(" UC2 - Add Passenger Bogies to Train ");
+        System.out.println(" UC3 - Track Unique Bogie IDs ");
         System.out.println("========================================\n");
 
-        // Create ArrayList
-        List<String> passengerBogies = new ArrayList<>();
+        // Create a Set to store unique bogie IDs
+        Set<String> bogies = new HashSet<>();
 
-        // --- CREATE (Add bogies) ---
-        passengerBogies.add("B1");
-        passengerBogies.add("B2");
-        passengerBogies.add("B3");
+        // --- ADD IDs (including duplicates) ---
+        bogies.add("BG101");
+        bogies.add("BG102");
+        bogies.add("BG103");
+        bogies.add("BG104");
 
-        System.out.println("After Adding Bogies: " + passengerBogies);
+        // Duplicate entries (ignored automatically)
+        bogies.add("BG101");
+        bogies.add("BG102");
 
-        // --- READ (Check availability) ---
-        System.out.println("Is B2 present? " + passengerBogies.contains("B2"));
+        // Display unique bogies
+        System.out.println("Unique Bogie IDs: " + bogies);
 
-        // --- UPDATE (Modify bogie) ---
-        passengerBogies.set(1, "B2-Updated");
-        System.out.println("After Update: " + passengerBogies);
+        // Check existence
+        System.out.println("Contains BG103? " + bogies.contains("BG103"));
 
-        // --- DELETE (Remove bogie) ---
-        passengerBogies.remove("B3");
-        System.out.println("After Removal: " + passengerBogies);
-
-        // Final state
-        System.out.println("\nFinal Train Consist: " + passengerBogies);
+        // Total unique count
+        System.out.println("Total Unique Bogies: " + bogies.size());
     }
 }
