@@ -2,46 +2,38 @@ import java.util.*;
 
 /**
  * ============================================================
- * MAIN CLASS - UseCase4TrainConsistMgmt
+ * MAIN CLASS - UseCase5TrainConsistMgmt
  * ============================================================
  *
- * Use Case 4: Maintain Ordered Bogie IDs
+ * Use Case 5: Preserve Insertion Order of Bogies
  *
  * Description:
- * Demonstrates LinkedList to maintain ordered train consist.
+ * Demonstrates LinkedHashSet to maintain order + uniqueness.
  *
  * @author Developer
- * @version 4.0
+ * @version 5.0
  */
-class UseCase4TrainConsistMgmt {
+class UseCase5TrainConsistMgmt {
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println(" UC4 - Maintain Ordered Bogie IDs ");
+        System.out.println(" UC5 - Preserve Insertion Order ");
         System.out.println("========================================\n");
 
-        // Create LinkedList for train consist
-        LinkedList<String> train = new LinkedList<>();
+        // Create LinkedHashSet
+        LinkedHashSet<String> train = new LinkedHashSet<>();
 
         // --- Add bogies ---
         train.add("Engine");
         train.add("Sleeper");
-        train.add("AC");
         train.add("Cargo");
         train.add("Guard");
 
-        System.out.println("Initial Train: " + train);
+        // --- Try duplicate ---
+        train.add("Sleeper"); // ignored
 
-        // --- Insert Pantry at position 2 ---
-        train.add(2, "Pantry");
-        System.out.println("After Adding Pantry: " + train);
-
-        // --- Remove first and last ---
-        train.removeFirst();
-        train.removeLast();
-
-        // Final output
-        System.out.println("Final Train Consist: " + train);
+        // Display final formation
+        System.out.println("Final Train Formation: " + train);
     }
 }
