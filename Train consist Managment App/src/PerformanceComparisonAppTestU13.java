@@ -63,9 +63,19 @@ class PerformanceComparisonAppTestU13{
                 bogies.add(new Bogie("Sleeper", i % 100));
             }
 
+            class PerformanceComparisonApp
+
+                    public static <__TMP__> __TMP__ filterUsingStream() {
+                    }
+
+            public static <__TMP__> __TMP__ filterUsingStream() {
+                    } ;
             List<Bogie> result = PerformanceComparisonApp.filterUsingStream(bogies);
 
             assertNotNull(result);
         }
+
+    private void filterUsingStream() {
     }
+}
 }

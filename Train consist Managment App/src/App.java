@@ -1,10 +1,26 @@
- class LinearSearchApp {
+import java.util.*;
 
-    public static boolean searchBogie(String[] bogies, String key) {
+class BinarySearchApp {
 
-        for (int i = 0; i < bogies.length; i++) {
-            if (bogies[i].equals(key)) {
+    public static boolean binarySearch(String[] bogies, String key) {
+
+        // Ensure sorted (important)
+        Arrays.sort(bogies);
+
+        int low = 0;
+        int high = bogies.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int cmp = bogies[mid].compareTo(key);
+
+            if (cmp == 0) {
                 return true; // found
+            } else if (cmp < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
@@ -15,14 +31,10 @@
 
         String[] bogies = {"BG101","BG205","BG309","BG412","BG550"};
 
-        String searchKey = "BG309";
+        String key = "BG309";
 
-        boolean found = searchBogie(bogies, searchKey);
+        boolean found = binarySearch(bogies, key);
 
-        if (found) {
-            System.out.println("Bogie Found");
-        } else {
-            System.out.println("Bogie Not Found");
-        }
+        System.out.println(found ? "Bogie Found" : "Bogie Not Found");
     }
 }
