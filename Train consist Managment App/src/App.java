@@ -1,39 +1,29 @@
 import java.util.*;
 
-class BinarySearchApp {
+ class SafeSearchApp {
 
-    public static boolean binarySearch(String[] bogies, String key) {
+    public static boolean searchBogie(String[] bogies, String key) {
 
-        // Ensure sorted (important)
-        Arrays.sort(bogies);
+        // Fail-fast validation
+        if (bogies == null || bogies.length == 0) {
+            throw new IllegalStateException("No bogies available for search");
+        }
 
-        int low = 0;
-        int high = bogies.length - 1;
-
-        while (low <= high) {
-            int mid = (low + high) / 2;
-
-            int cmp = bogies[mid].compareTo(key);
-
-            if (cmp == 0) {
-                return true; // found
-            } else if (cmp < 0) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
+        // Linear search (can reuse UC18 logic)
+        for (String b : bogies) {
+            if (b.equals(key)) {
+                return true;
             }
         }
 
-        return false; // not found
+        return false;
     }
 
     public static void main(String[] args) {
 
-        String[] bogies = {"BG101","BG205","BG309","BG412","BG550"};
+        String[] bogies = {"BG101","BG205","BG309"};
 
-        String key = "BG309";
-
-        boolean found = binarySearch(bogies, key);
+        boolean found = searchBogie(bogies, "BG205");
 
         System.out.println(found ? "Bogie Found" : "Bogie Not Found");
     }
