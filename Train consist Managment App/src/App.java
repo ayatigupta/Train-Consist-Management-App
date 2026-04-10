@@ -1,30 +1,28 @@
-class BubbleSortApp {
+ class LinearSearchApp {
 
-    public static void bubbleSort(int[] arr) {
-        int n = arr.length;
+    public static boolean searchBogie(String[] bogies, String key) {
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-
-                if (arr[j] > arr[j + 1]) {
-                    // swap
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
+        for (int i = 0; i < bogies.length; i++) {
+            if (bogies[i].equals(key)) {
+                return true; // found
             }
         }
+
+        return false; // not found
     }
 
     public static void main(String[] args) {
 
-        int[] capacities = {72, 56, 24, 70, 60};
+        String[] bogies = {"BG101","BG205","BG309","BG412","BG550"};
 
-        bubbleSort(capacities);
+        String searchKey = "BG309";
 
-        System.out.println("Sorted Capacities:");
-        for (int c : capacities) {
-            System.out.print(c + " ");
+        boolean found = searchBogie(bogies, searchKey);
+
+        if (found) {
+            System.out.println("Bogie Found");
+        } else {
+            System.out.println("Bogie Not Found");
         }
     }
 }
