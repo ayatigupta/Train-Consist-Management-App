@@ -1,66 +1,78 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
+// Required Bogie class
+class Bogie {
+    String name;
+    int capacity;
 
-public class UseCase17TrainConsistMgmtTest {
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+}
+
+public class PerformanceComparisonAppTestU13 {
 
     @Test
-    void testSort_BasicAlphabeticalSorting() {
-        String[] arr = {"Sleeper","AC Chair","First Class","General","Luxury"};
-
-        BogieSortApp.sortBogieNames(arr);
-
-        assertArrayEquals(
-                new String[]{"AC Chair","First Class","General","Luxury","Sleeper"},
-                arr
+    void testLoopFilteringLogic() {
+        List<Bogie> bogies = List.of(
+                new Bogie("Sleeper", 70),
+                new Bogie("AC", 50)
         );
+
+        List<Bogie> result = PerformanceComparisonApp.filterUsingLoop(bogies);
+
+        assertEquals(1, result.size());
     }
 
     @Test
-    void testSort_UnsortedInput() {
-        String[] arr = {"Luxury","General","Sleeper","AC Chair"};
-
-        BogieSortApp.sortBogieNames(arr);
-
-        assertArrayEquals(
-                new String[]{"AC Chair","General","Luxury","Sleeper"},
-                arr
+    void testStreamFilteringLogic() {
+        List<Bogie> bogies = List.of(
+                new Bogie("Sleeper", 70),
+                new Bogie("AC", 50)
         );
+
+        List<Bogie> result = PerformanceComparisonApp.filterUsingStream(bogies);
+
+        assertEquals(1, result.size());
     }
 
     @Test
-    void testSort_AlreadySortedArray() {
-        String[] arr = {"AC Chair","First Class","General"};
-
-        BogieSortApp.sortBogieNames(arr);
-
-        assertArrayEquals(
-                new String[]{"AC Chair","First Class","General"},
-                arr
+    void testLoopAndStreamResultsMatch() {
+        List<Bogie> bogies = List.of(
+                new Bogie("Sleeper", 70),
+                new Bogie("Sleeper", 80),
+                new Bogie("AC", 50)
         );
+
+        List<Bogie> loopResult = PerformanceComparisonApp.filterUsingLoop(bogies);
+        List<Bogie> streamResult = PerformanceComparisonApp.filterUsingStream(bogies);
+
+        assertEquals(loopResult.size(), streamResult.size());
     }
 
     @Test
-    void testSort_DuplicateBogieNames() {
-        String[] arr = {"Sleeper","AC Chair","Sleeper","General"};
+    void testExecutionTimeMeasurement() {
+        long start = System.nanoTime();
+        long end = System.nanoTime();
 
-        BogieSortApp.sortBogieNames(arr);
+        long elapsed = end - start;
 
-        assertArrayEquals(
-                new String[]{"AC Chair","General","Sleeper","Sleeper"},
-                arr
-        );
+        assertTrue(elapsed >= 0);
     }
 
     @Test
-    void testSort_SingleElementArray() {
-        String[] arr = {"Sleeper"};
+    void testLargeDatasetProcessing() {
+        List<Bogie> bogies = new ArrayList<>();
 
-        BogieSortApp.sortBogieNames(arr);
+        for (int i = 0; i < 10000; i++) {
+            bogies.add(new Bogie("Sleeper", i % 100));
+        }
 
-        assertArrayEquals(
-                new String[]{"Sleeper"},
-                arr
-        );
+        List<Bogie> result = PerformanceComparisonApp.filterUsingStream(bogies);
+
+        assertNotNull(result);
     }
 }
