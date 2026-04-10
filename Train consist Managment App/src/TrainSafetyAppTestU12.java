@@ -1,5 +1,7 @@
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.*;
-import java.util.stream.*;
+        import java.util.stream.*;
 
 class GoodsBogie {
     String type;
@@ -11,7 +13,7 @@ class GoodsBogie {
     }
 }
 
- class TrainSafetyApp {
+class TrainSafetyAppTestU12 {
 
     public static boolean isTrainSafe(List<GoodsBogie> bogies) {
         return bogies.stream()
