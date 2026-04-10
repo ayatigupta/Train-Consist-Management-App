@@ -1,18 +1,28 @@
-import java.util.*;
+ class LinearSearchApp {
 
-class BogieSortApp {
+    public static boolean searchBogie(String[] bogies, String key) {
 
-    public static void sortBogieNames(String[] bogies) {
-        Arrays.sort(bogies);
+        for (int i = 0; i < bogies.length; i++) {
+            if (bogies[i].equals(key)) {
+                return true; // found
+            }
+        }
+
+        return false; // not found
     }
 
     public static void main(String[] args) {
 
-        String[] bogies = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
+        String[] bogies = {"BG101","BG205","BG309","BG412","BG550"};
 
-        sortBogieNames(bogies);
+        String searchKey = "BG309";
 
-        System.out.println("Sorted Bogie Names:");
-        System.out.println(Arrays.toString(bogies));
+        boolean found = searchBogie(bogies, searchKey);
+
+        if (found) {
+            System.out.println("Bogie Found");
+        } else {
+            System.out.println("Bogie Not Found");
+        }
     }
 }

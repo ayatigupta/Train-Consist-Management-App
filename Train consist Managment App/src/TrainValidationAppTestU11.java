@@ -7,7 +7,8 @@ class TrainValidationAppTestU11{
 {
 
     @Test
-    void testRegex_ValidTrainID() {
+    void testRegex_ValidTrainID() Object TrainValidationApp;
+    {
         assertTrue(TrainValidationApp.isValidTrainID("TRN-1234"));
     }
 
